@@ -2,23 +2,30 @@ import React from 'react'
 import '../style.css'
 import { useState } from 'react'
 
-const AgregarTarea = () => {
-    let inputValue = ''
-    let inputViewed = ''
+const AgregarTarea = ({agregarTarea}) => {
+    const [inputValue,setInputValue] = useState('')
+    const [inputViewed,setInputViewed] = useState('')
     const onInputChange = (event) => [
-        inputValue = (event.target.value)
+        setInputValue(event.target.value)
     ]
     const onViewedChange = (viewed) => {
-        inputViewed = (viewed.target.value)
+        setInputViewed(viewed.target.value)
     }
+    function onSubmit(event){
+        event.preventDefault()
+        agregarTarea({nombre:inputValue, visto:inputViewed})
+    }
+
   return (
-    <div className='agregarTareas'>
+    <div onSubmit={onSubmit} className='agregarTareas'>
         <form className='nombre_AgregarTareas'>
             <p className='nombre'>Name Task:</p>
             <input
-                className='inputTask' 
+                className='inputTask'
                 type="text" 
                 placeholder='ingresar el nombre de la tarea'
+                value = {inputValue}
+                onChange={onInputChange}
             />
         </form>
         <form className='viewed_AgregarTareas'>
@@ -27,9 +34,12 @@ const AgregarTarea = () => {
                 className='inputViewed'
                 type="text" 
                 placeholder='ingresar si la tarea ha sido vista o no'
+                value = {inputViewed}
+                onChange={onViewedChange}
             />
         </form>
     </div>
   )
 }
+
 export default AgregarTarea

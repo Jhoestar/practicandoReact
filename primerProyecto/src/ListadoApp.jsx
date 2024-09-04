@@ -20,48 +20,38 @@ const styleOl= {
 export const ListadoApp = () => {
 
     let listadoSecciones = [
-    {
-        nombre:'Instalaciones necesarios', visto: true,
-    },
-    {
-        nombre:'Uso de vite', visto: true,
-    },
-    {
-        nombre:'Componentes', visto: true,
-    },
-    {
-        nombre:'Variables en JSX', visto: true,
-    },
-    {
-        nombre:'Props', visto: true,
-    },
-    {
-        nombre:'Eventos', visto: true,
-    },
-    {
-        nombre:'useState', visto: true,
-    },
-    {
-        nombre:'Redux', visto: true,
-    },
-    {
-        nombre:'customHooks', visto: true,
-    },
+    {id: 0, nombre:'Instalaciones necesarios', visto: true,},
+    {id: 1, nombre:'Uso de vite', visto: true,},
+    {id: 2, nombre:'Componentes', visto: true,},
+    {id: 3, nombre:'Variables en JSX', visto: true,},
+    {id: 4, nombre:'Props', visto: true,},
+    {id: 5, nombre:'Eventos', visto: true,},
+    {id: 6, nombre:'useState', visto: true,},
+    {id: 7, nombre:'Redux', visto: true,},
+    {id: 8, nombre:'customHooks', visto: true,},
 ]
-    const addTask = (nombre, ) => [
-        setArreglo([...arreglo, item])
-    ]
-
     const [arreglo, setArreglo] = useState(listadoSecciones)        
+    
+    const onAddTask = (value) => {
+        if(!value.nombre || !value.visto) return
+
+        const newArr = [{
+            id: arreglo.length + 1,
+            nombre:value.nombre.trim(),
+            vista:value.visto.trim()
+        }]
+        setArreglo([...arreglo, value])
+    }
+
 
     return(
         <>
             <h1>Course Topic List</h1>
-            <AgregarTarea></AgregarTarea>
+            <AgregarTarea agregarTarea = {onAddTask}></AgregarTarea>
             <ol style={styleOl}>
-                {arreglo.map(item => <Items key={item.nombre} nombre={item.nombre} visto= {item.visto} ></Items>)}
+                {arreglo.map(item => <Items key={item.id} nombre={item.nombre} visto= {item.visto} ></Items>)}
             </ol>
-            <button onClick={addTask}>Add Task</button>
+            <button onClick={onAddTask}>Add Task</button>
         </>
     )
 } 
