@@ -16,6 +16,7 @@ const AgregarTarea = () => {
         <form className='nombre_AgregarTareas'>
             <p className='nombre'>Name Task:</p>
             <input
+                id='task_input'
                 className='inputTask' 
                 type="text" 
                 placeholder='ingresar el nombre de la tarea'
@@ -24,6 +25,7 @@ const AgregarTarea = () => {
         <form className='viewed_AgregarTareas'>
             <p className='viewed'>Viewed:</p>
             <input 
+                id='viewed_input'
                 className='inputViewed'
                 type="text" 
                 placeholder='ingresar si la tarea ha sido vista o no'

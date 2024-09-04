@@ -48,9 +48,13 @@ export const ListadoApp = () => {
         nombre:'customHooks', visto: true,
     },
 ]
-    const addTask = (nombre, ) => [
+    const addTask = () => {
+        const item = {
+            nombre: document.getElementById('task_input').value,
+            visto: !!document.getElementById('viewed_input').value
+        }
         setArreglo([...arreglo, item])
-    ]
+    }
 
     const [arreglo, setArreglo] = useState(listadoSecciones)        
 
