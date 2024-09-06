@@ -2,7 +2,6 @@ import { useState } from "react"
 import './style.css'
 import AgregarTarea from "./components/AgregarTarea"
 
-
 const Items=({nombre, visto}) => {
     return(
         <li>
@@ -33,14 +32,15 @@ export const ListadoApp = () => {
     const [arreglo, setArreglo] = useState(listadoSecciones)        
     
     const onAddTask = (value) => {
-        if(!value.nombre || !value.visto) return
+        if(!value.nombre || value.visto === null) return
 
-        const newArr = [{
-            id: arreglo.length + 1,
+        const newTask = {
+            id: arreglo.length,
             nombre:value.nombre.trim(),
-            vista:value.visto.trim()
-        }]
-        setArreglo([...arreglo, value])
+            visto:value.visto,
+        }
+
+        setArreglo([...arreglo, newTask])
     }
 
 

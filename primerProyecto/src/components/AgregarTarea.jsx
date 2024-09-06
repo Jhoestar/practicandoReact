@@ -13,7 +13,7 @@ const AgregarTarea = ({agregarTarea}) => {
     }
     function onSubmit(event){
         event.preventDefault()
-        agregarTarea({nombre:inputValue, visto:inputViewed})
+        agregarTarea({nombre:inputValue, visto: inputViewed==='true'?true:inputViewed==='false'?false:null})
     }
 
   return (
@@ -33,7 +33,7 @@ const AgregarTarea = ({agregarTarea}) => {
             <input 
                 className='inputViewed'
                 type="text" 
-                placeholder='ingresar si la tarea ha sido vista o no'
+                placeholder='ingresar true o false'
                 value = {inputViewed}
                 onChange={onViewedChange}
             />
