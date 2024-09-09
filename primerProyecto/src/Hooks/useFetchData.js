@@ -6,9 +6,9 @@ export const useFetchData = (endPoint) => {
     const [isLoading,setIsLoading] = useState(true)
 
     const getFetch = async() =>{
-        const {data,isLoading} = await fetchData(endPoint)
+        const {data,loading} = await fetchData(endPoint)
         setDataApi(data)
-        setIsLoading(isLoading)
+        setIsLoading(loading)
     }
 
     useEffect( ()=>{
