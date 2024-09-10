@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useReducer, useState } from "react"
 import { useForm } from "../hooks/useForm"
 
 export const FormularioComponent = () => {
+
+    const focusRef = useRef()
 
     const initialForm = {
         userName: '',

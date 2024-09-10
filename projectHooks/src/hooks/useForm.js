@@ -1,7 +1,9 @@
+import { useState } from "react"
+
 
 export const useForm = () => {
 
-    const [formstate, setformstate] = useState({
+    const [formstate, setFormstate] = useState({
         userName: '',
         email: '',
         password: ''
@@ -11,7 +13,7 @@ export const useForm = () => {
 
     const onInputChange = ({target}) =>{
         const {name, value} = target
-        setformstate({
+        setFormstate({
             ...formstate,
             [name]: value
         })
