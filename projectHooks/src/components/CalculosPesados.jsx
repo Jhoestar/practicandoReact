@@ -16,7 +16,7 @@ export const CalculosPesados = () => {
 
   return (
     <>
-      <h1>Calculo</h1>
+      <h1>Calculo:</h1>
       <p>{getCalculo(numeros)}</p>
       <button className='btn btn-primary' onClick={()=>setShow(!show)}>{show? 'show': 'hide'}</button>
       <button className='btn btn-primary' onClick={()=> agregarNum()}>Agrerar Numeros</button>
