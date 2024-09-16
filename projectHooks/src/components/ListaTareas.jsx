@@ -1,7 +1,7 @@
 import { useState, useReducer } from "react"
 import { useForm } from "../hooks/useForm"
 const initialState = [{
-    id: 1,
+    id: new Date().getDate(),
     tarea: 'Explicar Reducer',
     finalizada: false
 }]
@@ -52,8 +52,15 @@ export const ListaTareas = () => {
     const agregarTareaForm = (event) => {
         event.preventDefault()
         console.log(formstate)
-        //type: '[TAREAS] agregar Tarea',
-        //payload: nuevaTarea
+        const tarea = {
+            id: new Date().getDate(),
+            tarea: event.target.value,
+            finalizada: false
+        }
+        const action = [
+            type: '[TAREAS] agregar Tarea',
+            payload: 
+        ]
     }    
     
 
