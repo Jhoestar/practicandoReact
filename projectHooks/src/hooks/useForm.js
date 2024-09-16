@@ -1,17 +1,10 @@
 import { useState } from "react"
 
 
-export const useForm = () => {
+export const useForm = (initialForm = {}) => {
 
-    const [formstate, setFormstate] = useState({
-        userName: '',
-        email: '',
-        password: ''
-    })
-
-    const {userName, email, password} = formstate
-
-    const onInputChange = ({target}) =>{
+    const [formstate, setFormstate] = useState({initialForm})
+    const onInputChange = ({target}) =>{   
         const {name, value} = target
         setFormstate({
             ...formstate,
