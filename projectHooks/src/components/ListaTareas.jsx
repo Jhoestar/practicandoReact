@@ -51,16 +51,18 @@ export const ListaTareas = () => {
 
     const agregarTareaForm = (event) => {
         event.preventDefault()
-        console.log(formstate)
+        if(formstate.tarea == '') return 
         const tarea = {
-            id: new Date().getDate(),
-            tarea: event.target.value,
+            id: new Date().getTime(),
+            tarea: formstate.tarea,
             finalizada: false
         }
-        const action = [
+        console.log(tarea)
+        const action = {
             type: '[TAREAS] agregar Tarea',
-            payload: 
-        ]
+            payload: tarea
+        }
+        dispatch(action)
     }    
     
 
@@ -71,10 +73,10 @@ export const ListaTareas = () => {
                     <label>Ingresa nueva tarea</label>
                     <input 
                         type="text" 
-                        className="form-control" id="exampleInputEmail1" 
-                        aria-describedby="emailHelp" 
+                        className="form-control" 
                         placeholder="Ingrese tarea"
                         value={tarea}
+                        name="tarea"
                         onChange={onInputChange}
                     />
                 </div>
