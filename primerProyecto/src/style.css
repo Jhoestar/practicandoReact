@@ -1,0 +1,29 @@
+
+
+.agregarTareas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.nombre_AgregarTareas, .viewed_AgregarTareas {
+    display: flex; 
+    padding: 10px;
+    align-items: center;
+    border: 1px solid #6e6262;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.nombre_AgregarTareas p, .viewed_AgregarTareas p {
+    margin: 0;
+    width: fit-content;
+}
+
+input {
+    margin-left: 5px;
+    width: 15rem;
+    height: 2rem;
+}
