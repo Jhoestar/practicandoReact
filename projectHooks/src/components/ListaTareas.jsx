@@ -17,7 +17,7 @@ const agregarTarea = {
     payload: nuevaTarea
 }
 const editarTarea = {
-    type: '[TAREAS] editar Tarea',
+    type: '[TAREAS] finalizar Tarea',
     payload: nuevaTarea
 }
 const eliminarTarea = {
@@ -29,15 +29,26 @@ const borrarTarea = {
     payload: nuevaTarea
 }
 
-const types = [agregarTarea.type, editarTarea.type, eliminarTarea.type,
-    borrarTarea.type
-]
-
 const tareaReducer = (state = initialState, action = {}) => {
-    const isType = types.some(type => {
-        console.log(type) 
-        return type === action.type})
-    return isType?[...state, action.payload]:state
+    switch (action.type) {
+        case '[TAREAS] agregar Tarea':
+            return [...state, action.payload]
+        case '[TAREAS] finalizar Tarea':
+            return state.map(tarea => {
+                if (tarea.id === action.payload) {
+                    return {
+                        ...tarea,
+                        finalizada: !tarea.finalizada
+                    }
+                } return tarea
+            })
+        case '[TAREAS] eliminar Tarea':
+            return state.filter(tarea => tarea.id !== action.payload)
+            console.log('eliminar')
+        case '[TAREAS] borrar Tarea':
+            //return[...state,action.payload]
+            console.log('borrar')
+    }
 }
 
 console.log(tareaReducer(initialState, agregarTarea))
@@ -46,12 +57,12 @@ console.log(tareaReducer(initialState, agregarTarea))
 export const ListaTareas = () => {
 
     const [state, dispatch] = useReducer(tareaReducer, initialState)
-    
-    const {tarea,formstate, onInputChange} = useForm({tarea:''})
+
+    const { tarea, formstate, onInputChange } = useForm({ tarea: '' })
 
     const agregarTareaForm = (event) => {
         event.preventDefault()
-        if(formstate.tarea == '') return 
+        if (formstate.tarea == '') return
         const tarea = {
             id: new Date().getTime(),
             tarea: formstate.tarea,
@@ -63,35 +74,68 @@ export const ListaTareas = () => {
             payload: tarea
         }
         dispatch(action)
-    }    
-    
+    }
+
+    const finalizarTareaForm = ({ id }) => {
+        const action = {
+            type: '[TAREAS] finalizar Tarea',
+            payload: id
+        }
+        dispatch(action)
+    }
+
+    const eliminarTarea = ({ id }) => {
+        const action = {
+            type: '[TAREAS] eliminar Tarea',
+            payload: id
+        }
+        dispatch(action)
+    }
+
 
     return (
         <>
             <form onSubmit={agregarTareaForm}>
                 <div className="form-group">
                     <label>Ingresa nueva tarea</label>
-                    <input 
-                        type="text" 
-                        className="form-control" 
+                    <input
+                        type="text"
+                        className="form-control"
                         placeholder="Ingrese tarea"
                         value={tarea}
                         name="tarea"
                         onChange={onInputChange}
                     />
                 </div>
-                
+
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
 
 
             <hr />
 
-            <ul>
-                {state.map(item =>{
+            <ul className="list-group">
+                {state.map(item => {
                     return (
-                    <li key = {item.id}>{item.tarea}</li>
-                )})}
+                        <li key={item.id} className="list-group-item d-flex justify-content-between">
+                            <span>{item.tarea}</span>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    value={item.finalizada}
+                                    onChange={() => finalizarTareaForm(item)}
+                                    style={{marginRight:'10px'}}
+                                />
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => eliminarTarea(item)}
+                                >
+                                    Borrar
+                                </button>
+                            </div>
+                        </li>
+                    )
+                })}
             </ul>
         </>
     )
