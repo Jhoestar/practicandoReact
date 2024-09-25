@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { Card } from '../components/Card'
 
 export const ComprasPage = () => {
 
@@ -16,7 +18,16 @@ export const ComprasPage = () => {
     }, [])
   return (
     <>
-        <img src={productos.image} alt={productos.title} />
+      <h1>Compras:</h1>
+      {productos.map((producto)=>(
+        <Card
+          key={producto.id}
+          imagen={producto.image}
+          titulo={producto.title}
+          descripcion={producto.description}
+          precio={producto.price}
+        ></Card>
+      ))}
     </>
   )
 }
