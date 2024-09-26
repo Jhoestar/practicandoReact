@@ -1,24 +1,23 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect , useContext } from 'react'
 import { Card } from '../components/Card'
-import { useContext } from 'react'
 import { ProductosContext } from '../context/ProductoContext'
 import { CarritoContext } from '../context/CarritoContext'
 
 export const ComprasPage = () => {
 
-  const {listaCompras,agregarCompra,aumentarCantidad,disminuirCantidad,eliminarCompra} = useContext(CarritoContext)
+  const {agregarCompra,eliminarCompra} = useContext(CarritoContext)
 
-  const handleAgregar = () => {
+  const handleAgregar = (compra) => {
+    agregarCompra(compra)
+  }
+  const handleQuitar = (id) => {
+    eliminarCompra(id)
+  }
+  const handleAumentar = (id) => {
     
   }
-  const handleQuitar = () => {
-    
-  }
-  const handleAumentar = () => {
-    
-  }
-  const handleDisminuir = () => {
+  const handleDisminuir = (id) => {
     
   }
   const { productos } = useContext(ProductosContext)
@@ -32,6 +31,8 @@ export const ComprasPage = () => {
           titulo={producto.title}
           descripcion={producto.description}
           precio={producto.price}
+          handleAgregar={()=>handleAgregar(producto)}
+          handleQuitar={()=>handleQuitar(producto.id)}
         ></Card>
       ))}
     </>

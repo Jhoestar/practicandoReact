@@ -4,7 +4,7 @@ import { CarritoContext } from '../context/CarritoContext'
 
 export const CarritoPage = () => {
 
-  const { listaCompras, agregarCompra, aumentarCantidad, disminuirCantidad } = useContext(CarritoContext)
+  const { listaCompras, agregarCompra, aumentarCantidad, disminuirCantidad, eliminarCompra } = useContext(CarritoContext)
 
   return (
     <div>
