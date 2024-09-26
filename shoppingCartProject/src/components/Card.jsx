@@ -26,7 +26,7 @@ export const Card = ({ imagen, titulo, descripcion, precio, handleAgregar, handl
                     <button
                         type='button'
                         className='boton-quitar'
-                        onClick={clickQuitar}
+                        onClick={ clickQuitar}
                     >
                         Quitar del Carrito
                     </button>
