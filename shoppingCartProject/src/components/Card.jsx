@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import '../Styles/card.css'
+import '../styles/card.css'
 
-export const Card = ({ imagen, titulo, descripcion, precio }) => {
+export const Card = ({ imagen, titulo, descripcion, precio, handleAgregar, handleQuitar, handleAumentar, handleDisminuir}) => {
 
     const [added, setAdded] = useState(false)
 
     const clickAgregar = () => {
+        handleAgregar()
         setAdded(true)
     }
     const clickQuitar = () => {
+        handleQuitar()
         setAdded(false)
     }
     
@@ -24,7 +26,7 @@ export const Card = ({ imagen, titulo, descripcion, precio }) => {
                     <button
                         type='button'
                         className='boton-quitar'
-                        onClick={clickQuitar}
+                        onClick={ clickQuitar}
                     >
                         Quitar del Carrito
                     </button>

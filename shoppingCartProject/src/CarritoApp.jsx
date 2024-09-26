@@ -10,12 +10,12 @@ export const CarritoApp = () => {
     return (
         <ProductosProvider>
             <CarritoProvider>
-            <Navbar></Navbar>
-            <Routes>
-                <Route path='/' element={<ComprasPage></ComprasPage>}></Route>
-                <Route path='/carrito' element={<CarritoPage></CarritoPage>}></Route>
-                <Route path='/*' element={<Navigate to='/'></Navigate>}></Route>
-            </Routes>
+                <Navbar></Navbar>
+                <Routes>
+                    <Route path='/' element={<ComprasPage></ComprasPage>}></Route>
+                    <Route path='/carrito' element={<CarritoPage></CarritoPage>}></Route>
+                    <Route path='/*' element={<Navigate to='/'></Navigate>}></Route>
+                </Routes>
             </CarritoProvider>
         </ProductosProvider>
     )
