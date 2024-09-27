@@ -10,9 +10,17 @@ export const CarritoProvider = ({children}) => {
             case '[CARRITO] Agregar Compra':
                 return [...state, action.payload]
             case '[CARRITO] Aumentar Cantidad Compra':
-                return state
+                return state.map(item=>{
+                    const cant = item.cantidad +1
+                    if(item.id=== action.payload)return {...item, cantidad:cant}
+                    return item
+                })
             case '[CARRITO] Disminuir Cantidad Compra':
-                return state
+                return state.map(item=>{
+                    const cant = item.cantidad - 1
+                    if(item.id === action.payload && cant>0)return {...item, cantidad:cant}
+                    else{return item}
+                })
             case '[CARRITO] Eliminar Compra':
                 return state.filter(compra => (compra.id!==action.payload))
             default:
@@ -22,6 +30,7 @@ export const CarritoProvider = ({children}) => {
     const [listaCompras, dispatch] = useReducer(comprasReducer, initialState)
 
     const agregarCompra = (compra) => {
+        compra.cantidad = 1
         const action = {
             type:'[CARRITO] Agregar Compra',
             payload:compra
